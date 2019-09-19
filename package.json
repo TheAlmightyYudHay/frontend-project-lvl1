@@ -1,6 +1,6 @@
 {
   "name": "weekends-braingames",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,5 +30,8 @@
     "@babel/node": "^7.6.1",
     "@babel/preset-env": "^7.6.0",
     "cross-env": "^6.0.0"
+  },
+  "dependencies": {
+    "readline-sync": "^1.4.10"
   }
 }
