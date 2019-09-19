@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import {askName} from "../index";
+import askName from '../index';
 
-console.log(`Welcome to the Brain Games!\n`);
+console.log('Welcome to the Brain Games!\n');
 
 askName();
