@@ -1,6 +1,6 @@
 {
   "name": "weekends-braingames",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/TheAlmightyYudHay/frontend-project-lvl1#readme",
   "bin": {
-    "brain-games": "dist/bin/brain-games.js"
+    "brain-games": "dist/bin/brain-games.js",
+    "brain-even": "dist/bin/brain-even.js"
   },
   "files": [
     "dist"
