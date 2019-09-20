@@ -10,3 +10,4 @@ greeting(playerName);
 const gameResult = askEven(0);
 
 if (gameResult) console.log(`Congratulations, ${playerName}!`);
+else console.log(`Let's try again, ${playerName}!`);
