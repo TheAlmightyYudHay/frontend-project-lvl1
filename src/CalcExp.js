@@ -1,4 +1,7 @@
 import { getFrom1To3, getFrom1To100 } from './math';
+import {
+  triple, gF, gS, gT,
+} from './Triple';
 
 // Create random sign
 // eslint-disable-next-line consistent-return
@@ -15,19 +18,19 @@ const createMathSign = () => {
 };
 
 // functions for creating and managing calc expression data type
-const createExpression = (a, b, sign) => (f) => f(a, b, sign);
+const createExpression = (a, b, sign) => triple(a, b, sign);
 
-const getExpFirst = (exp) => exp((a) => a);
+const getExpFirst = (exp) => gF(exp);
 
-const getExpSecond = (exp) => exp((a, b) => b);
+const getExpSecond = (exp) => gS(exp);
 
-const getExpSign = (exp) => exp((a, b, c) => c);
+const getExpSign = (exp) => gT(exp);
 
 // Expression to string
 const expToString = (exp) => `${getExpFirst(exp)} ${getExpSign(exp)} ${getExpSecond(exp)}`;
 
 // Generate calc expression
-const createCalc = () => {
+const generateExpression = () => {
   const first = getFrom1To100();
   const second = getFrom1To100();
   const sign = createMathSign();
@@ -52,5 +55,5 @@ const resolveExp = (exp) => {
 };
 
 export {
-  createCalc as getQuestionItem, expToString as itemToString, resolveExp as getAnswer,
+  generateExpression as getQuestionItem, expToString as itemToString, resolveExp as getAnswer,
 };

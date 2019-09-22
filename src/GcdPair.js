@@ -1,16 +1,17 @@
 import { getFrom1To100 } from './math';
+import { triple, gF, gS } from './Triple';
 
-const createGcdPair = (a, b) => (f) => f(a, b);
+const createGcdPair = (a, b) => triple(a, b);
 
-const getGcdFirst = (gcd) => gcd((a) => a);
+const getGcdFirst = (gcd) => gF(gcd);
 
-const getGcdSecond = (gcd) => gcd((a, b) => b);
+const getGcdSecond = (gcd) => gS(gcd);
 
 // GCD pair to string
 const GcdPairToString = (gcd) => `${getGcdFirst(gcd)} ${getGcdSecond(gcd)}`;
 
 // Generate GCD pair
-const createGcd = () => {
+const generateGcd = () => {
   const first = getFrom1To100();
   const second = getFrom1To100();
   return createGcdPair(first, second);
@@ -26,5 +27,5 @@ const resolveGcd = (gcd) => {
 };
 
 export {
-  createGcd as getQuestionItem, GcdPairToString as itemToString, resolveGcd as getAnswer,
+  generateGcd as getQuestionItem, GcdPairToString as itemToString, resolveGcd as getAnswer,
 };
