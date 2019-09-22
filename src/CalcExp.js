@@ -1,8 +1,4 @@
-import getRandomNumber from './math';
-
-const getFrom1To3 = getRandomNumber(1, 3);
-
-const getFrom1To100 = getRandomNumber(1, 100);
+import { getFrom1To3, getFrom1To100 } from './math';
 
 // Create random sign
 // eslint-disable-next-line consistent-return

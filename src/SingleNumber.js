@@ -1,6 +1,6 @@
-import getRandomNumber from './math';
+import { getFrom1To100 } from './math';
 
-const createNumber = getRandomNumber(1, 100);
+const createNumber = getFrom1To100;
 
 const numberToString = (n) => `${n}`;
 

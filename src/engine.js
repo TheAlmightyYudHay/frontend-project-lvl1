@@ -10,7 +10,9 @@ export default (questionItem) => {
   const gameRound = (score) => {
     // return true if player won
     if (score === scoreToWin) return true;
+    // Create round question item
     const currentQuestionItem = questionItem.getQuestionItem();
+    // Resolve round item and save correct answer as string value
     const correctAnswer = `${questionItem.getAnswer(currentQuestionItem)}`;
     console.log(`Question: ${questionItem.itemToString(currentQuestionItem)}`);
     const answer = readlineSync.question('Your answer: ', {

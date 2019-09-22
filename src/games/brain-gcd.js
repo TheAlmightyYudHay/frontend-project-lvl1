@@ -1,16 +1,16 @@
 import makeGame from '../engine';
-import * as CalcExp from '../CalcExp';
+import * as GcdPair from '../GcdPair';
 import greeting from '../greeting';
 import checkResult from '../checkResult';
 
-const gameRule = 'What is the result of the expression?\n';
+const gameRule = 'Find the greatest common divisor of given numbers.\n';
 
-const brainCalcGame = makeGame(CalcExp);
+const brainGcdGame = makeGame(GcdPair);
 
 export default () => {
   const playerName = greeting(gameRule);
 
-  const gameResult = brainCalcGame(0);
+  const gameResult = brainGcdGame(0);
 
   checkResult(gameResult, playerName);
 };
