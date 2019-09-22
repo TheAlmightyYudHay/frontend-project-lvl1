@@ -1,8 +1,4 @@
-import { getFrom1To100 } from './math';
-
-const createNumber = getFrom1To100;
-
-const numberToString = (n) => `${n}`;
+import { createNumber, numberToString } from './Number';
 
 // Check is number even;
 const isEven = (n) => (n % 2 === 0 ? 'yes' : 'no');

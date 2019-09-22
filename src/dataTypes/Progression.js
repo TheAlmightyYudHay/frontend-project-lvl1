@@ -1,4 +1,4 @@
-import { getFrom1To7, getFrom1To10 } from './math';
+import { getFrom1To7, getFrom1To10 } from '../lib/math';
 import {
   triple, gF, gS, gT,
 } from './Triple';

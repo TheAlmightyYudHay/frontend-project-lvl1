@@ -1,7 +1,7 @@
-import makeGame from '../engine';
-import * as Progression from '../Progression';
-import greeting from '../greeting';
-import checkResult from '../checkResult';
+import makeGame from '../gameEngine/engine';
+import * as Progression from '../dataTypes/Progression';
+import greeting from '../gameEngine/greeting';
+import checkResult from '../gameEngine/checkResult';
 
 const gameRule = 'What number is missing in the progression?\n';
 

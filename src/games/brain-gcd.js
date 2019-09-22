@@ -1,7 +1,7 @@
-import makeGame from '../engine';
-import * as GcdPair from '../GcdPair';
-import greeting from '../greeting';
-import checkResult from '../checkResult';
+import makeGame from '../gameEngine/engine';
+import * as GcdPair from '../dataTypes/GcdPair';
+import greeting from '../gameEngine/greeting';
+import checkResult from '../gameEngine/checkResult';
 
 const gameRule = 'Find the greatest common divisor of given numbers.\n';
 
