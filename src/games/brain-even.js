@@ -1,16 +1,17 @@
 import makeGame from '../gameEngine/engine';
-import * as Number from '../dataTypes/EvenNumber';
-import greeting from '../gameEngine/greeting';
-import checkResult from '../gameEngine/checkResult';
+import getRandomNumber from '../lib/math';
+
+// Check is number even;
+const isEven = (n) => n % 2 === 0;
+
+const gameRound = () => {
+  const roundValue = getRandomNumber(1, 100);
+  const roundQuestion = roundValue;
+  const roundAnswer = isEven(roundValue) ? 'yes' : 'no';
+  // best solution, that I can make
+  return [roundQuestion, `${roundAnswer}`];
+};
 
 const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".\n';
 
-const brainEvenGame = makeGame(Number);
-
-export default () => {
-  const playerName = greeting(gameRule);
-
-  const gameResult = brainEvenGame(0);
-
-  checkResult(gameResult, playerName);
-};
+export default () => makeGame(gameRound, gameRule);
