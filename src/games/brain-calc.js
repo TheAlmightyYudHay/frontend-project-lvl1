@@ -46,11 +46,11 @@ const resolveExp = (exp) => {
   }
 };
 
-export default () => {
-  const gameRule = 'What is the result of the expression?\n';
-  const createCalcRound = () => {
-    const roundValue = generateExpression();
-    return [expToString(roundValue), `${resolveExp(roundValue)}`];
-  };
-  makeGame(createCalcRound, gameRule);
+const createCalcRound = () => {
+  const roundValue = generateExpression();
+  return [expToString(roundValue), `${resolveExp(roundValue)}`];
 };
+
+const gameRule = 'What is the result of the expression?\n';
+
+export default () => makeGame(createCalcRound, gameRule);

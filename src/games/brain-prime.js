@@ -16,11 +16,11 @@ const isPrime = (n) => {
   return iter(2);
 };
 
-export default () => {
-  const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".\n';
-  const createPrimeRound = () => {
-    const roundValue = getRandomNumber(1, 100);
-    return [roundValue, `${isPrime(roundValue) ? 'yes' : 'no'}`];
-  };
-  makeGame(createPrimeRound, gameRule);
+const createPrimeRound = () => {
+  const roundValue = getRandomNumber(1, 100);
+  return [roundValue, `${isPrime(roundValue) ? 'yes' : 'no'}`];
 };
+
+const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".\n';
+
+export default () => makeGame(createPrimeRound, gameRule);
