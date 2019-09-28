@@ -4,14 +4,14 @@ import getRandomNumber from '../lib/math';
 // Check is number even;
 const isEven = (n) => n % 2 === 0;
 
-const gameRound = () => {
-  const roundValue = getRandomNumber(1, 100);
-  const roundQuestion = roundValue;
-  const roundAnswer = isEven(roundValue) ? 'yes' : 'no';
+const evenGameRound = () => {
+  const evenRoundValue = getRandomNumber(1, 100);
+  const evenRoundQuestion = evenRoundValue;
+  const evenRoundAnswer = isEven(evenRoundValue) ? 'yes' : 'no';
   // best solution, that I can make
-  return [roundQuestion, `${roundAnswer}`];
+  return [evenRoundQuestion, `${evenRoundAnswer}`];
 };
 
 const gameRule = 'Answer "yes" if the number is even, otherwise answer "no".\n';
 
-export default () => makeGame(gameRound, gameRule);
+export default () => makeGame(evenGameRound, gameRule);

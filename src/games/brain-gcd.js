@@ -27,14 +27,14 @@ const resolveGcd = (gcd) => {
     : resolveGcd(createGcdPair(second % first, first));
 };
 
-const gameRound = () => {
-  const roundValue = generateGcd();
-  const roundQuestion = GcdPairToString(roundValue);
-  const roundAnswer = resolveGcd(roundValue);
+const gcdGameRound = () => {
+  const gcdRoundValue = generateGcd();
+  const gcdRoundQuestion = GcdPairToString(gcdRoundValue);
+  const gcdRoundAnswer = resolveGcd(gcdRoundValue);
   // best solution, that I can make
-  return [roundQuestion, `${roundAnswer}`];
+  return [gcdRoundQuestion, `${gcdRoundAnswer}`];
 };
 
 const gameRule = 'Find the greatest common divisor of given numbers.\n';
 
-export default () => makeGame(gameRound, gameRule);
+export default () => makeGame(gcdGameRound, gameRule);

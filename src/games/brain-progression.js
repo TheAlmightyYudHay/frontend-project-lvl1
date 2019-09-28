@@ -44,14 +44,14 @@ const resolveProgression = (prog) => {
   return find(firstValue, 1);
 };
 
-const gameRound = () => {
-  const roundValue = generateProgression();
-  const roundQuestion = progToString(roundValue);
-  const roundAnswer = resolveProgression(roundValue);
+const progGameRound = () => {
+  const progRoundValue = generateProgression();
+  const progRoundQuestion = progToString(progRoundValue);
+  const progRoundAnswer = resolveProgression(progRoundValue);
   // best solution, that I can make
-  return [roundQuestion, `${roundAnswer}`];
+  return [progRoundQuestion, `${progRoundAnswer}`];
 };
 
 const gameRule = 'What number is missing in the progression?\n';
 
-export default () => makeGame(gameRound, gameRule);
+export default () => makeGame(progGameRound, gameRule);

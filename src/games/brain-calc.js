@@ -46,14 +46,14 @@ const resolveExp = (exp) => {
   }
 };
 
-const gameRound = () => {
-  const roundValue = generateExpression();
-  const roundQuestion = expToString(roundValue);
-  const roundAnswer = resolveExp(roundValue);
+const calcGameRound = () => {
+  const calcRoundValue = generateExpression();
+  const calcRoundQuestion = expToString(calcRoundValue);
+  const calcRoundAnswer = resolveExp(calcRoundValue);
   // best solution, that I can make
-  return [roundQuestion, `${roundAnswer}`];
+  return [calcRoundQuestion, `${calcRoundAnswer}`];
 };
 
 const gameRule = 'What is the result of the expression?\n';
 
-export default () => makeGame(gameRound, gameRule);
+export default () => makeGame(calcGameRound, gameRule);

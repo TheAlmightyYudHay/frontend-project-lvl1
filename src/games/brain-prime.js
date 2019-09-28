@@ -16,14 +16,14 @@ const isPrime = (n) => {
   return iter(2);
 };
 
-const gameRound = () => {
-  const roundValue = getRandomNumber(1, 100);
-  const roundQuestion = roundValue;
-  const roundAnswer = isPrime(roundValue) ? 'yes' : 'no';
+const primeGameRound = () => {
+  const primeRoundValue = getRandomNumber(1, 100);
+  const primeRoundQuestion = primeRoundValue;
+  const primeRoundAnswer = isPrime(primeRoundValue) ? 'yes' : 'no';
   // best solution, that I can make
-  return [roundQuestion, `${roundAnswer}`];
+  return [primeRoundQuestion, `${primeRoundAnswer}`];
 };
 
 const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".\n';
 
-export default () => makeGame(gameRound, gameRule);
+export default () => makeGame(primeGameRound, gameRule);
