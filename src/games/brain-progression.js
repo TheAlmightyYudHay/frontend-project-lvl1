@@ -44,11 +44,11 @@ const resolveProgression = (prog) => {
   return find(firstValue, 1);
 };
 
-const createProgressionRound = () => {
-  const roundValue = generateProgression();
-  return [progToString(roundValue), `${resolveProgression(roundValue)}`];
+export default () => {
+  const gameRule = 'What number is missing in the progression?\n';
+  const createProgressionRound = () => {
+    const roundValue = generateProgression();
+    return [progToString(roundValue), `${resolveProgression(roundValue)}`];
+  };
+  makeGame(createProgressionRound, gameRule);
 };
-
-const gameRule = 'What number is missing in the progression?\n';
-
-export default () => makeGame(createProgressionRound, gameRule);

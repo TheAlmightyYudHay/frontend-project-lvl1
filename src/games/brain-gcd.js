@@ -27,11 +27,11 @@ const resolveGcd = (gcd) => {
     : resolveGcd(createGcdPair(second % first, first));
 };
 
-const createGcdRound = () => {
-  const roundValue = generateGcd();
-  return [GcdPairToString(roundValue), `${resolveGcd(roundValue)}`];
+export default () => {
+  const gameRule = 'Find the greatest common divisor of given numbers.\n';
+  const createGcdRound = () => {
+    const roundValue = generateGcd();
+    return [GcdPairToString(roundValue), `${resolveGcd(roundValue)}`];
+  };
+  makeGame(createGcdRound, gameRule);
 };
-
-const gameRule = 'Find the greatest common divisor of given numbers.\n';
-
-export default () => makeGame(createGcdRound, gameRule);
