@@ -6,6 +6,7 @@ import getRandomNumber from '../lib/math';
  * but I do not want to use for in study project.
 */
 const isPrime = (n) => {
+  if (n < 2) return false;
   if (n === 2) return true;
   const limit = n / 2;
   const iter = (step) => {
@@ -16,11 +17,12 @@ const isPrime = (n) => {
   return iter(2);
 };
 
-const createPrimeRound = () => {
-  const roundValue = getRandomNumber(1, 100);
-  return [roundValue, `${isPrime(roundValue) ? 'yes' : 'no'}`];
+const generateRound = () => {
+  const roundQuestion = getRandomNumber(1, 100);
+  const roundAnswer = `${isPrime(roundQuestion) ? 'yes' : 'no'}`;
+  return [roundQuestion, roundAnswer];
 };
 
-const gameRule = 'Answer "yes" if given number is prime. Otherwise answer "no".\n';
+const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no".\n';
 
-export default () => makeGame(createPrimeRound, gameRule);
+export default () => makeGame(generateRound, gameDescription);

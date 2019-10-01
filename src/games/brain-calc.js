@@ -1,56 +1,32 @@
 import makeGame from '../gameEngine/engine';
 import getRandomNumber from '../lib/math';
-import {
-  triple, getFirst, getSecond, getThird,
-} from '../dataTypes/Triple';
 
 // Create random sign
 const mathSignsList = ['*', '+', '-'];
 
-const chooseMathSign = (list) => list[getRandomNumber(0, list.length - 1)];
-
-// functions for creating and managing calc expression data type
-const createExpression = (a, b, sign) => triple(a, b, sign);
-
-const getExpFirst = (exp) => getFirst(exp);
-
-const getExpSecond = (exp) => getSecond(exp);
-
-const getExpSign = (exp) => getThird(exp);
-
-// Expression to string
-const expToString = (exp) => `${getExpFirst(exp)} ${getExpSign(exp)} ${getExpSecond(exp)}`;
-
-// Generate calc expression
-const generateExpression = () => {
-  const first = getRandomNumber(1, 25);
-  const second = getRandomNumber(1, 25);
-  const sign = chooseMathSign(mathSignsList);
-  return createExpression(first, second, sign);
-};
-
 // Resolve calc exp
-const resolveExp = (exp) => {
-  const first = getExpFirst(exp);
-  const second = getExpSecond(exp);
-  const sign = getExpSign(exp);
-  switch (sign) {
+const resolveExpression = (firstNumber, secondNumber, operation) => {
+  switch (operation) {
     case '+':
-      return first + second;
+      return firstNumber + secondNumber;
     case '-':
-      return first - second;
+      return firstNumber - secondNumber;
     case '*':
-      return first * second;
+      return firstNumber * secondNumber;
     default:
-      return first + second;
+      return null;
   }
 };
 
-const createCalcRound = () => {
-  const roundValue = generateExpression();
-  return [expToString(roundValue), `${resolveExp(roundValue)}`];
+const generateRound = () => {
+  const firstNumber = getRandomNumber(1, 25);
+  const secondNumber = getRandomNumber(1, 25);
+  const operation = mathSignsList[getRandomNumber(0, mathSignsList.length - 1)];
+  const roundQuestion = `${firstNumber} ${operation} ${secondNumber}`;
+  const roundAnswer = `${resolveExpression(firstNumber, secondNumber, operation)}`;
+  return [roundQuestion, roundAnswer];
 };
 
-const gameRule = 'What is the result of the expression?\n';
+const gameDescription = 'What is the result of the expression?\n';
 
-export default () => makeGame(createCalcRound, gameRule);
+export default () => makeGame(generateRound, gameDescription);

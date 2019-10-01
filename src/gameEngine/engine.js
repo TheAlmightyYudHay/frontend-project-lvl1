@@ -1,23 +1,23 @@
 import readlineSync from 'readline-sync';
-import checkResult from './checkResult';
 
-const scoreToWin = 3;
+const scoreCount = 3;
 
-/* Fabric function for games. Its take 2 functions:
- * first generate the round question and second one looking for correct answer.
- */
+const checkResult = (result, player) => {
+  if (result) console.log(`Congratulations, ${player}!`);
+  else console.log(`Let's try again, ${player}!`);
+};
 
-export default (gameRoundGenerator, gameRule) => {
+export default (generateGameRound, gameDescription) => {
   console.log('Welcome to the Brain Games!');
-  if (gameRule) console.log(gameRule);
+  if (gameDescription) console.log(gameDescription);
   else console.log('\n');
   const playerName = readlineSync.question('May I have your name?', { defaultInput: 'Mr. Incognito' });
   console.log(`Hello, ${playerName}!\n`);
   const gameRound = (score = 0) => {
     // return true if player won
-    if (score === scoreToWin) return true;
+    if (score === scoreCount) return true;
     // Create round question item
-    const [roundQuestion, roundAnswer] = gameRoundGenerator();
+    const [roundQuestion, roundAnswer] = generateGameRound();
     console.log(`Question: ${roundQuestion}`);
     const answer = readlineSync.question('Your answer: ', {
       defaultInput: 'wrong!',

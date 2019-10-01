@@ -1,54 +1,35 @@
 import makeGame from '../gameEngine/engine';
 import getRandomNumber from '../lib/math';
-import {
-  triple, getFirst, getSecond, getThird,
-} from '../dataTypes/Triple';
 
-const progressionMaxLength = 10;
+const progressionLengthCount = 10;
 
-const createProgression = (start, step, hidden) => triple(start, step, hidden);
-
-const getStart = (prog) => getFirst(prog);
-
-const getStep = (prog) => getSecond(prog);
-
-const getHidden = (prog) => getThird(prog);
-
-const progToString = (prog) => {
-  const firstValue = getStart(prog);
-  const progStep = getStep(prog);
-  const stepOfHidden = getHidden(prog);
+const toString = (firstValue, progressionStep, positionOfHidden) => {
   const iter = (step, result, prevVal) => {
-    if (step > progressionMaxLength) return result;
-    const currentVal = step === 1 ? firstValue : prevVal + progStep;
-    if (step === stepOfHidden) return iter(step + 1, `${result} ..`, currentVal);
+    if (step > progressionLengthCount) return result;
+    const currentVal = step === 1 ? firstValue : prevVal + progressionStep;
+    if (step === positionOfHidden) return iter(step + 1, `${result} ..`, currentVal);
     return iter(step + 1, `${result} ${currentVal}`, currentVal);
   };
   return iter(1, '', 0);
 };
 
-const generateProgression = () => createProgression(
-  getRandomNumber(1, 7),
-  getRandomNumber(1, 7),
-  getRandomNumber(1, progressionMaxLength),
-);
-
-const resolveProgression = (prog) => {
-  const firstValue = getStart(prog);
-  const progStep = getStep(prog);
-  const stepOfHidden = getHidden(prog);
+const resolveProgression = (firstValue, progressionStep, positionOfHidden) => {
   const find = (current, step) => {
-    if (step === stepOfHidden) return current;
-    return find(current + progStep, step + 1);
+    if (step === positionOfHidden) return current;
+    return find(current + progressionStep, step + 1);
   };
   return find(firstValue, 1);
 };
 
-const createProgressionRound = () => {
-  const roundValue = generateProgression();
-  return [progToString(roundValue), `${resolveProgression(roundValue)}`];
+const generateRound = () => {
+  const firstValue = getRandomNumber(1, 7);
+  const progressionStep = getRandomNumber(1, 7);
+  const positionOfHidden = getRandomNumber(1, progressionLengthCount);
+  const roundQuestion = toString(firstValue, progressionStep, positionOfHidden);
+  const roundAnswer = `${resolveProgression(firstValue, progressionStep, positionOfHidden)}`;
+  return [roundQuestion, roundAnswer];
 };
 
-const gameRule = 'What number is missing in the progression?\n';
+const gameDescription = 'What number is missing in the progression?\n';
 
-export default () => makeGame(createProgressionRound, gameRule);
+export default () => makeGame(generateRound, gameDescription);
