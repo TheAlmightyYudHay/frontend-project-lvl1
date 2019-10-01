@@ -1,11 +1,11 @@
 import makeGame from '../gameEngine/engine';
 import getRandomNumber from '../lib/math';
 
-const progressionLengthCount = 10;
+const lengthCount = 10;
 
 const toString = (firstValue, progressionStep, positionOfHidden) => {
   const iter = (step, result, prevVal) => {
-    if (step > progressionLengthCount) return result;
+    if (step > lengthCount) return result;
     const currentVal = step === 1 ? firstValue : prevVal + progressionStep;
     if (step === positionOfHidden) return iter(step + 1, `${result} ..`, currentVal);
     return iter(step + 1, `${result} ${currentVal}`, currentVal);
@@ -27,7 +27,7 @@ const generateRound = () => {
   // But I do not want to use arrays in this project as much as possible
   const firstValue = getRandomNumber(1, 7);
   const progressionStep = getRandomNumber(1, 7);
-  const positionOfHidden = getRandomNumber(1, progressionLengthCount);
+  const positionOfHidden = getRandomNumber(1, lengthCount);
   const roundQuestion = toString(firstValue, progressionStep, positionOfHidden);
   const roundAnswer = `${resolveProgression(firstValue, progressionStep, positionOfHidden)}`;
   return [roundQuestion, roundAnswer];
