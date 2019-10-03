@@ -1,21 +1,21 @@
 import makeGame from '../gameEngine/engine';
 import getRandomNumber from '../lib/math';
 
-const resolveGcd = (firstNumber, secondNumber) => {
-  if (firstNumber === 0 || secondNumber === 0) return firstNumber + secondNumber;
-  return firstNumber > secondNumber
-    ? resolveGcd(firstNumber % secondNumber, secondNumber)
-    : resolveGcd(secondNumber % firstNumber, firstNumber);
+const resolveGcd = (firstOperand, secondOperand) => {
+  if (firstOperand === 0 || secondOperand === 0) return firstOperand + secondOperand;
+  return firstOperand > secondOperand
+    ? resolveGcd(firstOperand % secondOperand, secondOperand)
+    : resolveGcd(secondOperand % firstOperand, firstOperand);
 };
 
 const createRound = () => {
-  const firstNumber = getRandomNumber(1, 50);
-  const secondNumber = getRandomNumber(1, 50);
-  const roundQuestion = `${firstNumber} ${secondNumber}`;
-  const roundAnswer = `${resolveGcd(firstNumber, secondNumber)}`;
+  const firstOperand = getRandomNumber(1, 50);
+  const secondOperand = getRandomNumber(1, 50);
+  const roundQuestion = `${firstOperand} ${secondOperand}`;
+  const roundAnswer = resolveGcd(firstOperand, secondOperand).toString();
   return [roundQuestion, roundAnswer];
 };
 
-const gameDescription = 'Find the greatest common divisor of given numbers.\n';
+const gameDescription = 'Find the greatest common divisor of given numbers.';
 
 export default () => makeGame(createRound, gameDescription);

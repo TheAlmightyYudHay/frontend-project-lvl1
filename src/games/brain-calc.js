@@ -1,32 +1,30 @@
 import makeGame from '../gameEngine/engine';
 import getRandomNumber from '../lib/math';
 
-// Create random sign
 const mathSignsList = ['*', '+', '-'];
 
-// Resolve calc exp
-const resolveExpression = (firstNumber, secondNumber, operation) => {
+const resolveExpression = (firstOperand, secondOperand, operation) => {
   switch (operation) {
     case '+':
-      return firstNumber + secondNumber;
+      return firstOperand + secondOperand;
     case '-':
-      return firstNumber - secondNumber;
+      return firstOperand - secondOperand;
     case '*':
-      return firstNumber * secondNumber;
+      return firstOperand * secondOperand;
     default:
       return null;
   }
 };
 
 const generateRound = () => {
-  const firstNumber = getRandomNumber(1, 25);
-  const secondNumber = getRandomNumber(1, 25);
+  const firstOperand = getRandomNumber(1, 25);
+  const secondOperand = getRandomNumber(1, 25);
   const operation = mathSignsList[getRandomNumber(0, mathSignsList.length - 1)];
-  const roundQuestion = `${firstNumber} ${operation} ${secondNumber}`;
-  const roundAnswer = `${resolveExpression(firstNumber, secondNumber, operation)}`;
+  const roundQuestion = `${firstOperand} ${operation} ${secondOperand}`;
+  const roundAnswer = resolveExpression(firstOperand, secondOperand, operation).toString();
   return [roundQuestion, roundAnswer];
 };
 
-const gameDescription = 'What is the result of the expression?\n';
+const gameDescription = 'What is the result of the expression?';
 
 export default () => makeGame(generateRound, gameDescription);

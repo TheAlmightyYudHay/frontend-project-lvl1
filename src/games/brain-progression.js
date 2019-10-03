@@ -1,38 +1,27 @@
 import makeGame from '../gameEngine/engine';
 import getRandomNumber from '../lib/math';
 
-const lengthCount = 10;
+const progressionLength = 10;
 
-const toString = (firstValue, progressionStep, positionOfHidden) => {
-  const iter = (step, result, prevVal) => {
-    if (step > lengthCount) return result;
-    const currentVal = step === 1 ? firstValue : prevVal + progressionStep;
-    if (step === positionOfHidden) return iter(step + 1, `${result} ..`, currentVal);
-    return iter(step + 1, `${result} ${currentVal}`, currentVal);
+const buildProgressionString = (firstValue, progressionStep, hiddenElementPosition) => {
+  const iter = (step, result, previousValue) => {
+    if (step > progressionLength) return result;
+    const currentValue = step === 1 ? firstValue : previousValue + progressionStep;
+    if (step === hiddenElementPosition) return iter(step + 1, `${result} ..`, currentValue);
+    return iter(step + 1, `${result} ${currentValue}`, currentValue);
   };
   return iter(1, '', 0);
 };
 
-const resolveProgression = (firstValue, progressionStep, positionOfHidden) => {
-  const find = (current, step) => {
-    if (step === positionOfHidden) return current;
-    return find(current + progressionStep, step + 1);
-  };
-  return find(firstValue, 1);
-};
-
 const generateRound = () => {
-  // We can set progression only with 3 values: start, step and position of hidden
-  // I understand, that I can use Array and make something like this: arr[hidden] = '..'
-  // But I do not want to use arrays in this project as much as possible
   const firstValue = getRandomNumber(1, 7);
   const progressionStep = getRandomNumber(1, 7);
-  const positionOfHidden = getRandomNumber(1, lengthCount);
-  const roundQuestion = toString(firstValue, progressionStep, positionOfHidden);
-  const roundAnswer = `${resolveProgression(firstValue, progressionStep, positionOfHidden)}`;
+  const hiddenElementPosition = getRandomNumber(1, progressionLength);
+  const roundQuestion = buildProgressionString(firstValue, progressionStep, hiddenElementPosition);
+  const roundAnswer = (firstValue + progressionStep * (hiddenElementPosition - 1)).toString();
   return [roundQuestion, roundAnswer];
 };
 
-const gameDescription = 'What number is missing in the progression?\n';
+const gameDescription = 'What number is missing in the progression?';
 
 export default () => makeGame(generateRound, gameDescription);

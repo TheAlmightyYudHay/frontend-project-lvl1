@@ -2,21 +2,17 @@ import readlineSync from 'readline-sync';
 
 const scoreCount = 3;
 
-const checkResult = (result, player) => {
-  if (result) console.log(`Congratulations, ${player}!`);
-  else console.log(`Let's try again, ${player}!`);
-};
-
 export default (generateGameRound, gameDescription) => {
   console.log('Welcome to the Brain Games!');
-  if (gameDescription) console.log(gameDescription);
+  if (gameDescription) console.log(`${gameDescription}\n`);
   else console.log('\n');
   const playerName = readlineSync.question('May I have your name?', { defaultInput: 'Mr. Incognito' });
   console.log(`Hello, ${playerName}!\n`);
   const gameRound = (score = 0) => {
-    // return true if player won
-    if (score === scoreCount) return true;
-    // Create round question item
+    if (score === scoreCount) {
+      console.log(`Congratulations, ${playerName}!`);
+      return true;
+    }
     const [roundQuestion, roundAnswer] = generateGameRound();
     console.log(`Question: ${roundQuestion}`);
     const answer = readlineSync.question('Your answer: ', {
@@ -27,8 +23,8 @@ export default (generateGameRound, gameDescription) => {
       return gameRound(score + 1);
     }
     console.log(`'${answer}' is wrong answer ;(. Correct answer was '${roundAnswer}'.`);
-    // return false if player lose
+    console.log(`Let's try again, ${playerName}!`);
     return false;
   };
-  checkResult(gameRound(), playerName);
+  return gameRound();
 };
