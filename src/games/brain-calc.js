@@ -1,4 +1,4 @@
-import makeGame from '../gameEngine/engine';
+import makeGame from '../engine';
 import getRandomNumber from '../lib/math';
 
 const mathSignsList = ['*', '+', '-'];
