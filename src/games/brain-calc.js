@@ -3,7 +3,7 @@ import getRandomNumber from '../lib/math';
 
 const mathSignsList = ['*', '+', '-'];
 
-const resolveExpression = (firstOperand, secondOperand, operation) => {
+const createAnswer = (firstOperand, secondOperand, operation) => {
   switch (operation) {
     case '+':
       return firstOperand + secondOperand;
@@ -21,7 +21,7 @@ const generateRound = () => {
   const secondOperand = getRandomNumber(1, 25);
   const operation = mathSignsList[getRandomNumber(0, mathSignsList.length - 1)];
   const roundQuestion = `${firstOperand} ${operation} ${secondOperand}`;
-  const roundAnswer = resolveExpression(firstOperand, secondOperand, operation).toString();
+  const roundAnswer = createAnswer(firstOperand, secondOperand, operation).toString();
   return [roundQuestion, roundAnswer];
 };
 
