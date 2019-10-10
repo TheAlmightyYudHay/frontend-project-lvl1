@@ -3,25 +3,23 @@ import getRandomNumber from '../lib/math';
 
 const progressionLength = 10;
 
-// I use this function to create progression string, not to get progression hidden element
-// For example from createQuestion(1, 1, 3) we get '1 2 .. 4 5 6 7 8 9 10' etc
-const createQuestion = (firstValue, progressionStep, hiddenElementPosition) => {
-  // I use step for iteration process as counter;
-  const iter = (counter, result, previousValue) => {
-    if (counter === progressionLength) return result;
-    const currentValue = counter === 0 ? firstValue : previousValue + progressionStep;
-    if (counter === hiddenElementPosition) return iter(counter + 1, `${result} ..`, currentValue);
-    return iter(counter + 1, `${result} ${currentValue}`, currentValue);
+const createQuestion = (firstValue, progressionStep, hidden, length) => {
+  const finalValue = firstValue + progressionStep * (length - 1);
+  const iter = (current, acc) => {
+    if (current > finalValue) return acc;
+    const newValue = current === hidden ? '..' : current;
+    return iter(current + progressionStep, [...acc, newValue]);
   };
-  return iter(0, '', 0);
+  return iter(firstValue, []).join(' ');
 };
 
 const generateRound = () => {
   const firstValue = getRandomNumber(1, 7);
   const progressionStep = getRandomNumber(1, 7);
   const hiddenElementPosition = getRandomNumber(0, progressionLength - 1);
-  const roundQuestion = createQuestion(firstValue, progressionStep, hiddenElementPosition);
-  const roundAnswer = (firstValue + progressionStep * hiddenElementPosition).toString();
+  const hiddenValue = firstValue + progressionStep * hiddenElementPosition;
+  const roundQuestion = createQuestion(firstValue, progressionStep, hiddenValue, progressionLength);
+  const roundAnswer = hiddenValue.toString();
   return [roundQuestion, roundAnswer];
 };
 
