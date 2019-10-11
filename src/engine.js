@@ -11,7 +11,7 @@ export default (generateGameRound, gameDescription) => {
   const gameRound = (round, lastRound) => {
     if (round > lastRound) {
       console.log(`Congratulations, ${playerName}!`);
-      return undefined;
+      return;
     }
     const [roundQuestion, roundAnswer] = generateGameRound();
     console.log(`Question: ${roundQuestion}`);
@@ -20,11 +20,11 @@ export default (generateGameRound, gameDescription) => {
     });
     if (roundAnswer === answer) {
       console.log('Correct!');
-      return gameRound(round + 1, lastRound);
+      gameRound(round + 1, lastRound);
+    } else {
+      console.log(`'${answer}' is wrong answer ;(. Correct answer was '${roundAnswer}'.`);
+      console.log(`Let's try again, ${playerName}!`);
     }
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${roundAnswer}'.`);
-    console.log(`Let's try again, ${playerName}!`);
-    return undefined;
   };
-  return gameRound(1, roundCount);
+  gameRound(1, roundCount);
 };
